@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #0F0F0F;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tralalelotralala.SceneController">
+   <children>
+      <Button layoutX="208.0" layoutY="67.0" mnemonicParsing="false" onAction="#openProductCreationScene" prefHeight="41.0" prefWidth="111.0" styleClass="dark-button" text="Create" />
+      <Button layoutX="51.0" layoutY="64.0" mnemonicParsing="false" onAction="#BackToCompanyScene" prefHeight="41.0" prefWidth="111.0" styleClass="dark-button" text="Back" />
+
+      <ScrollPane fitToHeight="true" hbarPolicy="ALWAYS" layoutX="14.0" layoutY="510.0" prefHeight="570.0" prefWidth="1920.0" style="-fx-background-color: transparent; -fx-background-insets: 0;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="510.0">
+
+         <HBox fx:id="productsButtonContainer" alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: transparent; -fx-padding: 10;" styleClass="company-buttons" />
+      </ScrollPane>
+   </children>
+</AnchorPane>

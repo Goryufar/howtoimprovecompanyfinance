@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefWidth="1920.0" prefHeight="1080.0"
+            stylesheets="@style.css"
+            style="-fx-background-color: #0F0F0F;"
+            xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.tralalelotralala.SceneController">
+
+   <VBox fx:id="formContainer"
+         alignment="CENTER"
+         spacing="15"
+         prefWidth="400"
+         layoutX="760.0"
+         layoutY="250.0">
+
+      <Label text="Create Company" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+
+      <TextField fx:id="nameField" promptText="Name" styleClass="dark-button"/>
+      <TextField fx:id="locationField" promptText="Location" styleClass="dark-button"/>
+      <TextField fx:id="typeField" promptText="Type" styleClass="dark-button"/>
+      <TextArea fx:id="descriptionArea" promptText="Description" styleClass="dark-button"
+                prefRowCount="4" prefWidth="380" maxHeight="100"/>
+
+      <Button fx:id="createButton" text="Create" onAction="#onCreateCompany" styleClass="dark-button" prefWidth="200"/>
+   </VBox>
+</AnchorPane>

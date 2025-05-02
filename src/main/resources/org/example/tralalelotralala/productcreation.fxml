@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefWidth="1920.0" prefHeight="1080.0"
+            style="-fx-background-color: #0F0F0F;"
+            stylesheets="@style.css"
+            xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.tralalelotralala.SceneController">
+
+    <!-- Centered VBox for form fields -->
+    <VBox fx:id="productForm"
+          alignment="CENTER"
+          spacing="15"
+          prefWidth="400"
+          layoutX="760.0"
+          layoutY="200.0">
+
+        <TextField fx:id="productNameField" promptText="Name" styleClass="dark-button"/>
+        <TextField fx:id="productPriceField" promptText="Price" styleClass="dark-button"/>
+        <TextField fx:id="productDescriptionField" promptText="Description" styleClass="dark-button"/>
+        <TextField fx:id="productCostField" promptText="Cost" styleClass="dark-button"/>
+        <CheckBox fx:id="productIsDigitalField" text="Is Digital" styleClass="dark-button"/>
+        <Button text="Create" onAction="#onCreateProduct" styleClass="dark-button" prefWidth="200"/>
+    </VBox>
+
+    <!-- Back button at the top-left corner -->
+    <Button layoutX="40.0" layoutY="40.0"
+            text="Back"
+            onAction="#openProductsListScene"
+            styleClass="dark-button"/>
+</AnchorPane>

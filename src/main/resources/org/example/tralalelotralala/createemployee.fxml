@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #0F0F0F;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tralalelotralala.SceneController">
+
+    <!-- Centered VBox for employee creation form -->
+    <VBox fx:id="employeeForm" alignment="CENTER" layoutX="760.0" layoutY="200.0" prefWidth="400" spacing="15">
+        <TextField fx:id="employeeNameField" promptText="Name" styleClass="dark-button" />
+        <TextField fx:id="employeeSurnameField" promptText="Surname" styleClass="dark-button" />
+        <TextField fx:id="employeeSalaryField" promptText="Salary" styleClass="dark-button" />
+        <TextField fx:id="employeeSexField" promptText="Sex" styleClass="dark-button" />
+        <TextField fx:id="employeeJobTypeField" promptText="Job Type" styleClass="dark-button" />
+        <TextField fx:id="employeeRoleField" promptText="Role" styleClass="dark-button" />
+        <Button onAction="#onCreateEmployee" prefWidth="200" styleClass="dark-button" text="Create" />
+    </VBox>
+
+    <!-- Back button at the top-left corner -->
+    <Button layoutX="236.0" layoutY="181.0" onAction="#BackToEmployeeCreationScene" styleClass="dark-button" text="Back" />
+</AnchorPane>

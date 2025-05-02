@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0"
+            style="-fx-background-color: #0F0F0F;"
+            stylesheets="@style.css"
+            xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.tralalelotralala.SceneController">
+
+<!-- ScrollPane wrapping HBox -->
+   <ScrollPane layoutX="0.0" layoutY="100.0"
+               prefHeight="760.0" prefWidth="1920.0"
+               hbarPolicy="ALWAYS"
+               vbarPolicy="NEVER"
+               fitToHeight="true"
+               style="-fx-background-color: transparent; -fx-background-insets: 0;"
+               AnchorPane.leftAnchor="0.0"
+               AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="20.0">
+      <HBox fx:id="companyButtonContainer"
+            alignment="CENTER_LEFT"
+            spacing="10"
+            styleClass="company-buttons"
+            style="-fx-background-color: transparent; -fx-padding: 10;" />
+   </ScrollPane>
+
+<!-- Create Company Button -->
+<Button layoutX="570.0" layoutY="624.0"
+        onAction="#openCompanyCreationScene"
+        prefHeight="68.0" prefWidth="160.0"
+        styleClass="dark-button-2"
+        text="Create Company" />
+</AnchorPane>

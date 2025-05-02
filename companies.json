@@ -1,0 +1,100 @@
+[
+    {
+        "name": "GDSGADS",
+        "description": "",
+        "location": "ADS",
+        "id": 0,
+        "type": "SDASA",
+        "employees": [{
+            "role": "",
+            "surname": "",
+            "sex": "",
+            "name": "BOSHDHAD",
+            "id": 0,
+            "salary": 1000,
+            "jobType": ""
+        }],
+        "products": [
+            {
+                "cost": 10,
+                "price": 100,
+                "name": "hac",
+                "description": "",
+                "id": 0,
+                "isdigital": false
+            },
+            {
+                "cost": 10,
+                "price": 100,
+                "name": "hac",
+                "description": "",
+                "id": 1,
+                "isdigital": false
+            },
+            {
+                "cost": 0,
+                "price": 1000,
+                "name": "Smetan",
+                "description": "",
+                "id": 2,
+                "isdigital": false
+            }
+        ],
+        "expenses": [{
+            "amount": 100000,
+            "name": "Voyage",
+            "description": "",
+            "id": 0
+        }]
+    },
+    {
+        "name": "",
+        "description": "",
+        "location": "",
+        "id": 1,
+        "type": "",
+        "employees": [],
+        "products": [],
+        "expenses": []
+    },
+    {
+        "name": "",
+        "description": "",
+        "location": "",
+        "id": 2,
+        "type": "",
+        "employees": [],
+        "products": [],
+        "expenses": []
+    },
+    {
+        "name": "",
+        "description": "",
+        "location": "",
+        "id": 3,
+        "type": "",
+        "employees": [],
+        "products": [],
+        "expenses": []
+    },
+    {
+        "name": "",
+        "description": "",
+        "location": "",
+        "id": 4,
+        "type": "",
+        "employees": [],
+        "products": [],
+        "expenses": []
+    },
+    {
+        "name": "",
+        "description": "",
+        "location": "",
+        "id": 5,
+        "type": "",
+        "employees": [],
+        "products": [],
+        "expenses": []
+    }
+]
