@@ -40,4 +40,21 @@ public class Product {
     public int getId() {
         return id;
     }
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setPrice(int price){
+        this.price = price;
+    }
+    public void setDescription(String description){
+        this.description = description;
+
+    }
+    public void setCost(int cost){
+        this.cost = cost;
+    }
+    public void setIsdigital(boolean isdigital){
+        this.isdigital = isdigital;
+    }
+
 }

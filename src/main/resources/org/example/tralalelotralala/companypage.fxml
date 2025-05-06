@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.chart.PieChart?>
-<AnchorPane minHeight="1080.0" minWidth="1920.0" style="-fx-background-color: #0F0F0F;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tralalelotralala.SceneController">
+<AnchorPane minHeight="1080.0" minWidth="1920.0" style="-fx-background-color: #0F0F0F;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tralalelotralala.SceneController">
 
    <children>
-      <PieChart fx:id="pieChart" layoutX="100" layoutY="150" prefWidth="400" prefHeight="400" />
+      <PieChart fx:id="pieChart" layoutX="100" layoutY="150" prefHeight="400" prefWidth="400" />
+      <BarChart fx:id="profitBarChart" layoutX="562.0" layoutY="181.0" prefHeight="313.0" prefWidth="415.0" title="Product Profit Margin">
+         <xAxis>
+            <CategoryAxis label="Product Name" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis label="Profit (Price - Cost)" />
+         </yAxis>
+      </BarChart>
       <Button layoutX="42.0" layoutY="49.0" mnemonicParsing="false" onAction="#BackToMainMeny" styleClass="dark-button" text="Back" />
 
       <Button layoutX="144.0" layoutY="49.0" mnemonicParsing="false" onAction="#openEmloyeCreationScene" styleClass="dark-button" text="Employees" />
@@ -22,8 +29,21 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <Button layoutX="899.0" layoutY="593.0" mnemonicParsing="false" onAction="#removeCompany" prefHeight="69.0" prefWidth="78.0" text="Delete" />
-      <Label fx:id="MostProdProftiLabel" layoutX="592.0" layoutY="217.0" text="Most Profitable Product - NAN" textFill="WHITE">
+      <Button layoutX="1157.0" layoutY="681.0" mnemonicParsing="false" onAction="#removeCompany" prefHeight="69.0" prefWidth="78.0" styleClass="delete-button" text="Delete" />
+
+      <Label fx:id="MostProdProftiLabel" layoutX="647.0" layoutY="505.0" text="Most Profitable Product - NAN" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+
+      <Label fx:id="MostExpensiveEmployee" layoutX="647.0" layoutY="566.0" text="Most Expensive Employee - NAN" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+
+      <Label fx:id="MostExpensiveExpense" layoutX="647.0" layoutY="666.0" text="Most Expensive Additonal Expense - NAN" textFill="WHITE">
          <font>
             <Font size="23.0" />
          </font>

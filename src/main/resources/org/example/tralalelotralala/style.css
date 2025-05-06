@@ -4,6 +4,12 @@
     -fx-background-radius: 15;
     -fx-padding: 10 20 10 20;
 }
+.delete-button {
+    -fx-background-color: #660000;
+    -fx-text-fill: white;
+    -fx-background-radius: 15;
+    -fx-padding: 10 20 10 20;
+}
 .dark-button-2 {
     -fx-background-color: #1F1F1F;
     -fx-text-fill: white;
@@ -33,4 +39,32 @@
 
 .scroll-bar:horizontal {
     -fx-opacity: 100;
+}
+
+.dark-button:hover {
+    -fx-background-color: #3a3a3a;
+}
+
+.delete-button:hover {
+    -fx-background-color: #990000;
+}
+
+.dark-button-2:hover {
+    -fx-background-color: #2a2a2a;
+    -fx-border-color: #666;
+}
+
+.company-buttons > .button:hover {
+    -fx-background-color: #3a3a3a;
+}
+.company-button {
+    -fx-background-color: #2c2c2c;
+    -fx-text-fill: white;
+    -fx-background-radius: 12;
+    -fx-font-size: 14px;
+    -fx-padding: 10;
+}
+
+.company-button:hover {
+    -fx-background-color: #3a3a3a; /* Slightly lighter on hover */
 }

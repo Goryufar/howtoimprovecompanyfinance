@@ -28,7 +28,7 @@
     </VBox>
 
     <!-- Back button at the top-left corner -->
-    <Button layoutX="40.0" layoutY="40.0"
+    <Button layoutX="42.0" layoutY="49.0"
             text="Back"
             onAction="#openProductsListScene"
             styleClass="dark-button"/>

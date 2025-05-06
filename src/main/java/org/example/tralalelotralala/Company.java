@@ -91,6 +91,9 @@ public class Company {
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
     }
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
     public void addEmployee(Employee employee) {
         employees.add(employee);
     }
@@ -99,6 +102,42 @@ public class Company {
     }
     public void addExpense(Expense expense) {
         expenses.add(expense);
+    }
+
+    public int getEmployeesCount() {
+         return (int) employees.stream().count();
+    }
+    public int getProdcutsCount() {
+        return (int) products.stream().count();
+    }
+    public int getExpensesCount() {
+        int amount = 0;
+        for(int i=0; i < (int) expenses.stream().count();i++)
+            amount+=expenses.get(i).getAmount();
+
+        return amount;
+    }
+    public int  getProductExpenses() {
+        int amount = 0;
+        for(int i=0; i < (int) products.stream().count();i++)
+            amount+=products.get(i).getCost();
+
+        return amount;
+    }
+    public int  getEmployeeExpenses() {
+        int amount = 0;
+        for(int i=0; i < (int) employees.stream().count();i++)
+            amount+=employees.get(i).getSalary();
+
+        return amount;
+    }
+
+    public int getTotalExpenses(){
+        int amount = 0;
+        amount += getExpensesCount();
+        amount += getProductExpenses();
+        amount += getEmployeeExpenses();
+        return amount;
     }
 
     // Method to convert Company object to JSON

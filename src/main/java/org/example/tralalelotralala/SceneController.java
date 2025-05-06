@@ -1,5 +1,6 @@
 package org.example.tralalelotralala;
 import javafx.geometry.Pos;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.HBox;
 import javafx.event.ActionEvent;
@@ -13,7 +14,8 @@ import java.util.List;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
-
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 public class SceneController {
 
     // Company Properties
@@ -33,12 +35,16 @@ public class SceneController {
     private HBox companyButtonContainer;
 
     @FXML private PieChart pieChart;
+    @FXML
+    private BarChart<String, Number> profitBarChart;
 
     @FXML
     public static int destinationId; // <- where you store clicked company's ID
 
     @FXML
     public static int employeEditId;
+    @FXML
+    public static int productEditId;
 
     @FXML
     public static int balance;
@@ -51,6 +57,14 @@ public class SceneController {
 
     @FXML
     public Label MostProdProftiLabel;
+
+    @FXML
+    public Label MostExpensiveEmployee;
+
+    @FXML
+    public Label MostExpensiveExpense;
+
+
     @FXML
     public Label companyName;
 
@@ -118,11 +132,19 @@ public class SceneController {
         if(productsButtonContainer != null)
             loadProductsButtons();
 
-        if(pieChart != null)
+        if(pieChart != null) {
             GetPieChart();
+            updateProfitChart();
+        }
 
-        if(findCompanyById(destinationId) != null && MostProdProftiLabel!= null)
+
+
+
+        if(findCompanyById(destinationId) != null && MostProdProftiLabel!= null) {
             getMostPofitableProductName();
+            getMostExpensiveEmloyeeName();
+
+        }
     }
 
     public void openCompanyCreationScene(ActionEvent event) {
@@ -154,28 +176,29 @@ public class SceneController {
         // Ensure it's laid out horizontally (in case it's not already an HBox)
         if (companyButtonContainer instanceof HBox hbox) {
             hbox.setSpacing(10); // Add space between buttons
+
             hbox.setAlignment(Pos.CENTER); // Center alignment
         }
 
         // Generate a button for each company
         for (Company company : companies) {
-            Button button = new Button(company.getName()); // Set company name
-
+            Button button = new Button(
+                    company.getName() + "\n" +
+                            "Employees: " + company.getEmployeesCount() + "\n" +
+                            "Products: " + company.getProdcutsCount() + "\n" +
+                            "Additonal Expenses: $" + company.getExpensesCount() + "\n" +
+                            "Total Expenses: $" + company.getTotalExpenses()
+            );
             // Assign the company ID as user data
             button.setUserData(company.getId());
 
             // Style the button directly (inline)
-            button.setStyle(
-                    "-fx-background-color: #2c2c2c;" +     // Dark gray background
-                            "-fx-text-fill: white;" +              // White text
-                            "-fx-background-radius: 12;" +         // Rounded corners
-                            "-fx-padding: 10 20 10 20;" +          // Padding inside button
-                            "-fx-font-size: 14px;"                 // Font size
-            );
+            button.getStyleClass().add("company-button");
+
 
             // Set button action
             button.setOnAction(this::handleCompanyButtonClick);
-
+            button.setPrefSize(250, 250);
             // Add to container
             companyButtonContainer.getChildren().add(button);
         }
@@ -235,6 +258,7 @@ public class SceneController {
                 System.out.println("Invalid salary input! Please enter a valid number.");
             }
         }
+        MainApp.switchScene("employeecreation.fxml");
     }
     private Company findCompanyById(int destinationId) {
         allCompanies = CompanySaver.loadCompanies();
@@ -280,7 +304,10 @@ public class SceneController {
             } catch (NumberFormatException e) {
                 System.out.println("Invalid number input! Please enter valid integers.");
             }
+
+            MainApp.switchScene("allproducts.fxml");
         }
+
     }
     public void getTotalSpendings(){
         // loop through all employees mounthly salary
@@ -339,6 +366,29 @@ public class SceneController {
         pieChart.setData(pieChartData);
         pieChart.setTitle("Spendings Breakdown");
     }
+
+    public void updateProfitChart() {
+        Company company = findCompanyById(destinationId);
+
+        profitBarChart.getData().clear(); // Clear old data
+
+        if (company != null) {
+            List<Product> products = company.getProducts();
+
+            if (!products.isEmpty()) {
+                XYChart.Series<String, Number> series = new XYChart.Series<>();
+                series.setName("Profit per Product");
+
+                for (Product product : products) {
+                    double profit = product.getPrice() - product.getCost();
+                    series.getData().add(new XYChart.Data<>(product.getName(), profit));
+                }
+
+                profitBarChart.getData().add(series);
+            }
+        }
+    }
+
     public void removeCompany(ActionEvent event) {
         // Load all companies
         List<Company> companies = CompanySaver.loadCompanies();
@@ -399,20 +449,21 @@ public class SceneController {
 
         // Generate a button for each company
         for (Employee employee : company.getEmployees()) {
-            Button button = new Button(employee.getName()); // Set company name
+            Button button = new Button("Surname: "+ employee.getName() + "\n" +
+                    "Surname: " + employee.getSurname() + "\n" +
+                    "Salary: $" + employee.getSalary() + "\n" +
+                    "Sex: " + employee.getSex() + "\n" +
+                    "Job: " + employee.getJobType()+"\n" +
+                    "Role: " + employee.getRole()
+            );
 
             // Assign the company ID as user data
             button.setUserData(employee.getId());
 
-            // Style the button directly (inline)
-            button.setStyle(
-                    "-fx-background-color: #2c2c2c;" +     // Dark gray background
-                            "-fx-text-fill: white;" +              // White text
-                            "-fx-background-radius: 12;" +         // Rounded corners
-                            "-fx-padding: 10 20 10 20;" +          // Padding inside button
-                            "-fx-font-size: 14px;"                 // Font size
-            );
 
+
+            button.getStyleClass().add("company-button");
+            button.setPrefSize(250, 250);
             // Set button action
             button.setOnAction(this::handleEmployeesButtonClick);
 
@@ -439,6 +490,7 @@ public class SceneController {
             hbox.setAlignment(Pos.CENTER); // Center alignment
         }
 
+
         // Generate a button for each company
         for (Product product : company.getProducts()) {
             Button button = new Button(product.getName()); // Set company name
@@ -447,14 +499,10 @@ public class SceneController {
             button.setUserData(product.getId());
 
             // Style the button directly (inline)
-            button.setStyle(
-                    "-fx-background-color: #2c2c2c;" +     // Dark gray background
-                            "-fx-text-fill: white;" +              // White text
-                            "-fx-background-radius: 12;" +         // Rounded corners
-                            "-fx-padding: 10 20 10 20;" +          // Padding inside button
-                            "-fx-font-size: 14px;"                 // Font size
-            );
 
+
+            button.getStyleClass().add("company-button");
+            button.setPrefSize(250, 250);
             // Set button action
             button.setOnAction(this::handleProductssButtonClick);
 
@@ -464,7 +512,9 @@ public class SceneController {
     }
     public void handleProductssButtonClick (ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
+        productEditId = (int) clickedButton.getUserData();
         System.out.printf("Pressed product with id " + clickedButton.getUserData());
+        openEditProductsScene();
     }
     public void getMostPofitableProductName(){
         Company company =  findCompanyById(destinationId);
@@ -488,6 +538,29 @@ public class SceneController {
             MostProdProftiLabel.setText(" Most Profitable Product - NAN ");
         }
     }
+    public void getMostExpensiveEmloyeeName(){
+        Company company =  findCompanyById(destinationId);
+
+        if(company!= null){
+            List<Employee> employees = company.getEmployees();
+            if(employees.stream().count() >0){
+            Employee maxEmploye =  employees.getFirst();
+            for (Employee employee : employees) {
+
+                if(employee.getSalary() > maxEmploye.getSalary()){
+                    maxEmploye = employee;
+                }
+            }
+                MostExpensiveEmployee.setText(" Most Expensive Employee - "+maxEmploye.getName()+ " | " + maxEmploye.getSurname());
+                return;
+            }
+        }
+        else
+        {
+            MostExpensiveEmployee.setText(" Most Expensive Employee - NAN ");
+        }
+    }
+
     public void openEditEmployeesScene() {
         MainApp.switchScene("editemployee.fxml");
 
@@ -549,6 +622,45 @@ public class SceneController {
                 System.out.println("Invalid salary input! Please enter a valid number.");
             }
         }
+
+        MainApp.switchScene("employeecreation.fxml");
+    }
+    public void onChangeProduct(ActionEvent event){
+        Company company = findCompanyById(destinationId);
+        if (company != null) {
+            System.out.printf("Name is " + company.getName() );
+
+            try {
+                String name = productNameField.getText();
+                int price = Integer.parseInt(productPriceField.getText());
+                String description = productDescriptionField.getText();
+                int cost =  Integer.parseInt(productCostField.getText());
+                boolean isdigital = productIsDigitalField.isSelected();
+
+                // new id
+
+                for(Product product : company.getProducts()){
+                    if(product.getId() == productEditId){
+                        product.setName(name);
+                        product.setPrice(price);
+                        product.setDescription(description);
+                        product.setCost(cost);
+                        product.setIsdigital(isdigital);
+                    }
+                }
+
+
+                CompanySaver.saveCompanies(allCompanies);  // <--- Save all companies again (UPDATE the file!)
+
+                System.out.println("Edited Company");
+
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid salary input! Please enter a valid number.");
+            }
+        }
+    }
+    public void openEditProductsScene() {
+        MainApp.switchScene("editproduct.fxml");
     }
     public void removeEmployee(ActionEvent event) {
         Company company = findCompanyById(destinationId);
@@ -572,6 +684,28 @@ public class SceneController {
 
             // go back
             MainApp.switchScene("employeecreation.fxml");
+        }
+    }
+    public void removeProduct(ActionEvent event) {
+        Company company = findCompanyById(destinationId);
+        if (company != null) {
+            System.out.printf("Name is " + company.getName() );
+            List<Product> products = company.getProducts();
+            products.removeIf(emp -> emp.getId() == productEditId);
+
+            // Re-save the updated list of companies
+            List<Company> allCompanies = CompanySaver.loadCompanies();
+            for (Company c : allCompanies) {
+                if (c.getId() == company.getId()) {
+                    c.setProducts(products);
+                    break;
+                }
+            }
+            CompanySaver.saveCompanies(allCompanies);
+
+
+            // go back
+            MainApp.switchScene("allproducts.fxml");
         }
     }
 }

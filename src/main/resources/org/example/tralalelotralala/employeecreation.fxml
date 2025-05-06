@@ -5,8 +5,8 @@
 
 <AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@style.css" style="-fx-background-color: #0F0F0F;"  xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tralalelotralala.SceneController">
    <children>
-      <Button styleClass="dark-button" layoutX="255.0" layoutY="67.0" mnemonicParsing="false" onAction="#openEmployeeCreationFiled" text="Create Employee" />
-      <Button styleClass="dark-button" layoutX="30.0" layoutY="55.0" mnemonicParsing="false" onAction="#BackToCompanyScene" text="Back" />
+      <Button styleClass="dark-button" layoutX="144.0" layoutY="49.0" mnemonicParsing="false" onAction="#openEmployeeCreationFiled" text="Create Employee" />
+      <Button styleClass="dark-button" layoutX="42.0" layoutY="49.0"  mnemonicParsing="false" onAction="#BackToCompanyScene" text="Back" />
 
    <ScrollPane
            prefHeight="800.0"
